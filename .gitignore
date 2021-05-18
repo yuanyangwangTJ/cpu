@@ -1,6 +1,10 @@
+*.cache
+*.gen
+*.hw
+*.ip_user_files
+*.runs
+*.sim
+/cpu31/cpu31
 
-# .v4p backup files
-*~.xml
-
-# Dynamic plugins .dll
-bin/
+*.eddx
+*.sublime*
