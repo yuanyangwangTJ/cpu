@@ -4,7 +4,7 @@
 *.ip_user_files
 *.runs
 *.sim
-/cpu31/cpu31
+*.xpr
 
 *.eddx
 *.sublime*
