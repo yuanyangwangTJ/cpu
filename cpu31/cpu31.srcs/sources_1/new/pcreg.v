@@ -5,7 +5,7 @@ module PCReg(
 	input rst,
 	input ena,
 	input [31:0] data_in,
-	output [31:0] data_out 
+	output reg [31:0] data_out 
 	);
 
 	always @(posedge clk or posedge rst) begin

@@ -16,7 +16,7 @@ module Regfile(
 	reg [31:0] registers [31:0];
 	always @(posedge clk or posedge rst) begin
 		if (ena && rst) begin
-			registers[0] <= 32'b0;
+		    registers[0] <= 32'b0;
             registers[1] <= 32'b0;
             registers[2] <= 32'b0;
             registers[3] <= 32'b0;
