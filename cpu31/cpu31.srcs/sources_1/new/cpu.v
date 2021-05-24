@@ -48,7 +48,7 @@ module CPU31(
 
 	PCReg cpu_pc(
 		.clk(PC_clk), .rst(rst), .ena(PC_ena),
-		.data_in(pc), .data_out(D_PC)
+		.data_in(D_MUX2), .data_out(D_PC)
 		);
 
 	NPC cpu_npc(
