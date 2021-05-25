@@ -14,13 +14,13 @@ module CPU31(
 	);
 
 	wire PC_clk, PC_ena;
-	wire M1, M2, M3, M4, M5, M6, M8, D_MUX8;
+	wire M1, M2, M3, M4, M5, M6;
 	wire [1:0] M, M7;
 	wire [3:0] ALUC;
 	wire EXT16_s, zero, carry, negative, overflow;
 	wire RF_clk, RF_we, RF_ena;
 	wire [31:0] icode;
-	wire [31:0] D_PC, D_ALU, D_EXT1, D_EXT5, D_EXT16, D_EXT18;
+	wire [31:0] D_PC, D_ALU, D_EXT5, D_EXT16, D_EXT18;
 	wire [31:0] D_MUX1, D_MUX2, D_MUX4, D_MUX5, D_MUX6, D_MUX;
 	wire [31:0] D_NPC, D_ADD, D_ADD8, D_II;
 	wire [31:0] D_Rs, D_Rt;
@@ -41,7 +41,7 @@ module CPU31(
 	Controller cpu_control(
 		.clk(clk), .z(zero), .icode(icode), .PC_clk(PC_clk), .PC_ena(PC_ena),
 		.M1(M1), .M2(M2), .M3(M3), .M4(M4), .M5(M5), 
-		.M6(M6), .M7(M7), .M8(M8), .M(M),
+		.M6(M6), .M7(M7), .M(M),
 		.ALUC(ALUC), .RF_ena(RF_ena), .RF_we(RF_we), .RF_clk(RF_clk),
 		.DM_ena(DM_ena), .DM_we(DM_we), .DM_re(DM_re), .EXT16_s(EXT16_s)
 		);
@@ -76,7 +76,7 @@ module CPU31(
 	);
 
 	MUX2_1_5 cpu_mux3(
-		.a(IM_inst[10:6]), .b(D_MUX7),
+		.a(IM_inst[10:6]), .b(D_Rs[4:0]),
 		.ctrl(M3), .o(D_MUX3)
 		);
 
@@ -100,13 +100,8 @@ module CPU31(
 		.ctrl(M7), .o(D_MUX7)
 		);
 
-	MUX2_1_1 cpu_mux8(
-		.a(negative), .b(carry),
-		.ctrl(M8), .o(D_MUX8)
-		);
-
 	MUX4_1 cpu_mux(
-		.a(DM_rdata), .b(D_ALU), .c(D_ADD), .d(D_EXT1),
+		.a(D_ALU), .b(DM_rdata), .c(D_ADD8), .d(D_ALU),
 		.ctrl(M), .o(D_MUX)
 		);
 
@@ -115,15 +110,11 @@ module CPU31(
 		);
 
 	Add8 cpu_add8(
-		.a(D_PC), .r(D_ADD8)
+		.a(D_PC - 4), .r(D_ADD8)
 		);
 
 	II cpu_ii(
 		.a(D_PC[31:28]), .b(IM_inst[25:0]), .r(D_II)
-		);
-
-	EXT1 cpu_ext1(
-		.i(D_MUX8), .r(D_EXT1)
 		);
 
 	EXT5 cpu_ext5(

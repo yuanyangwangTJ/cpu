@@ -11,12 +11,14 @@ module ALU(
     output reg overflow
     );
 
-    reg [31:0] result [0:15];  //使用一串数组存储不同的结果，aluc为不同结果所存储的地址
-    reg [32:0] temp;    //作为中间量使用
+    reg [31:0] result [0:15];  //使用�?串数组存储不同的结果，aluc为不同结果所存储的地�?
+    reg [32:0] temp;    //作为中间量使�?
     reg Z [0:15];
     reg C [0:15];
     reg N [0:15];
     reg O [0:15];
+    wire signed [31:0] sa = a, sb = b;
+
     always@(a,b)
     begin
     //ADDU
@@ -33,7 +35,7 @@ module ALU(
     //ADD
     temp=0;
     temp=a+b;
-    result[2]=temp[31:0];
+    result[2]=sa + sb;
     if(result[2]==0)
         Z[2]=1;
     else
@@ -64,7 +66,7 @@ module ALU(
     //SUB
     temp=0;
     temp=a-b;
-    result[3]=temp[31:0];
+    result[3]=sa - sb;
     if(result[3]==0)
         Z[3]=1;
     else 
@@ -128,12 +130,12 @@ module ALU(
         Z[11]=1;
     else
         Z[11]=0;
-    result[11]=temp[31];
+    result[11]=sa < sb ? 1:0;
     N[11]=temp[31];
     
     //SLTU
     temp=a-b;
-    result[10]=temp[32];
+    result[10]=a < b ? 1:0;
     if(temp==0)
         Z[10]=1;
     else

@@ -5,7 +5,7 @@ module IMEM(
 	output [31:0] instr
 	);
 
-	imem imem(
+	mips_imem imem(
 		.a(addr),
 		.spo(instr)
 		);
