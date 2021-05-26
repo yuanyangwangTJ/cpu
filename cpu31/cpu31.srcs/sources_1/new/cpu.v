@@ -1,6 +1,6 @@
 // cpu.v
 
-module CPU31(
+module cpu(
 	input clk,
 	input rst,
 	input [31:0] IM_inst,
@@ -60,7 +60,7 @@ module CPU31(
 		.zero(zero), .carry(carry), .negative(negative), .overflow(overflow)
 		);
 
-	Regfile cpu_regf(
+	regfile cpu_ref(
 		.clk(RF_clk), .ena(RF_ena), .rst(rst), .we(RF_we),
 		.Rsc(IM_inst[25:21]), .Rtc(IM_inst[20:16]), .Rdc(D_MUX7),
 		.Rd(D_MUX), .Rs(D_Rs), .Rt(D_Rt)

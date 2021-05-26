@@ -24,7 +24,7 @@ module sccomp_dataflow(
 		.addr(DM_addr), .wdata(DM_wd), .rdata(DM_rd)
 		);
 
-	CPU31 cpu(
+	cpu sccpu(
 		.clk(clk_in), .rst(reset), .IM_inst(inst), .pc(pc),
 		.DM_rdata(DM_rd), .DM_addr(res), .DM_wdata(DM_wd),
 		.DM_ena(DM_ena), .DM_we(DM_we), .DM_re(DM_re)
