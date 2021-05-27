@@ -75,7 +75,7 @@ module Controller(
 	assign ALUC[1] = `add||`sub||`xor||`nor||`slt||`sltu||`sll||`sllv||`addi||`xori||`beq||`slti||`sltiu;
 	assign ALUC[0] = `sub||`subu||`or||`nor||`slt||`srl||`srlv||`ori||`beq||`bne||`slti;
 
-	assign RF_ena = ~`j;
+	assign RF_ena = ~`j || 1'b1;
 	assign RF_we = ~(`jr||`sw||`beq||`bne||`j);
 	assign DM_ena = `lw||`sw;
 	assign DM_re = `lw;
