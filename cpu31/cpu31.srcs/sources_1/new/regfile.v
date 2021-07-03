@@ -16,7 +16,7 @@ module regfile(
 	reg [31:0] array_reg [31:0];
 	always @(posedge clk or posedge rst) begin
 		if (ena && rst) begin
-		array_reg[0] <= 32'b0;
+		    array_reg[0] <= 32'b0;
             array_reg[1] <= 32'b0;
             array_reg[2] <= 32'b0;
             array_reg[3] <= 32'b0;

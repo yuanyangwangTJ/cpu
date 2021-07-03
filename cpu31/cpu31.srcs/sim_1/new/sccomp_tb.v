@@ -4,17 +4,6 @@ module sccomp_tb;
 	
 	reg clk, rst;
 	wire [31:0] inst, pc;
-	wire [31:0] icode, D_EXT16;
-	assign icode = sc.sccpu.icode;
-	assign D_EXT16 = sc.sccpu.D_EXT16;
-	wire [31:0] D_ALU = sc.sccpu.D_ALU;
-	wire [3:0] ALUC = sc.sccpu.ALUC;
-	wire [31:0] D_MUX6 = sc.sccpu.D_MUX6;
-	wire [31:0] D_MUX = sc.sccpu.D_MUX;
-	wire [31:0] D_MUX5 = sc.sccpu.D_MUX5;
-	wire [1:0] M6 = sc.sccpu.M6;
-	wire [31:0] DM_rd = sc.DM_rd;
-	wire [31:0] ref1 = sc.sccpu.cpu_ref.array_reg[1];
 
 	integer file_open;
 	initial begin
@@ -68,6 +57,7 @@ module sccomp_tb;
 		end
 		
 	end
+
 
 	sccomp_dataflow sc(
 		.clk_in(clk), .reset(rst),
